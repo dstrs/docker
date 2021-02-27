@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div style="display: flex; gap: 20px">
+      <textarea
+        id="msg"
+        id=""
+        cols="30"
+        rows="2"
+        style="padding: 10px"
+      ></textarea>
+      <button
+        style="padding: 10px 30px; font-size: 14px; cursor: pointer"
+        onclick="handleButtonClick();"
+      >
+        Send
+      </button>
+    </div>
+    <div style="margin: 20px 0">Rows count: {{ size }}</div>
+    {% for item in items %}
+      Value: {{ item.text }}
+      <br />
+      <div style="opacity: 0.3">Date: {{ item.created_at }}</div>
+
+      <hr />
+    {% endfor %}
+    <script>
+      async function handleButtonClick() {
+        let msgElement = document.querySelector("#msg");
+        if (!msgElement) return;
+        let value = msgElement.value;
+
+        let response = await fetch(
+          "/magic_db_ednpoint?" + new URLSearchParams({ msg: value })
+        );
+
+        if (response.status === 200) {
+          console.log("Success!");
+          location.reload();
+        } else {
+          let res = JSON.stringify(await response.json(), null, 2);
+          alert(res);
+          console.log("Something wrong!");
+        }
+      }
+    </script>
+  </body>
+</html>
