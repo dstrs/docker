@@ -1,4 +1,10 @@
-# Run
+# Installation
+
+```
+npm install
+```
+
+# Running
 
 ```
 docker-compose up
