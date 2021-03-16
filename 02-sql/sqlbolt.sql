@@ -54,7 +54,7 @@ INSERT INTO Boxoffice(movie_id,rating,domestic_sales,international_sales) VALUES
 
 
 CREATE TABLE IF NOT EXISTS Buildings (
-   building_name VARCHAR(2) NOT NULL
+   building_name VARCHAR NOT NULL
   ,capacity      INTEGER  NOT NULL
 );
 
@@ -65,9 +65,9 @@ INSERT INTO Buildings(building_name,capacity) VALUES ('2w',20);
 
 
 CREATE TABLE IF NOT EXISTS Employees(
-   role           VARCHAR(8) NOT NULL
-  ,name           VARCHAR(10) NOT NULL
-  ,building       VARCHAR(2) NOT NULL
+   role           VARCHAR NOT NULL
+  ,name           VARCHAR NOT NULL
+  ,building       VARCHAR NOT NULL
   ,years_employed INTEGER  NOT NULL
 );
 INSERT INTO Employees(role,name,building,years_employed) VALUES ('Engineer','Becky A.','1e',4);
