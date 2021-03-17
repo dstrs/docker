@@ -4,6 +4,7 @@ services:
   postgres:
     container_name: postgres
     image: postgres:13-alpine
+    command: postgres -c log_statement=all
     environment:
       POSTGRES_USER: alex
       POSTGRES_PASSWORD: 123

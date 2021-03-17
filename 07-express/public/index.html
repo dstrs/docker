@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>123</h1>
+    <div class="out"></div>
+    <br />
+    <div class="all"></div>
+    <script>
+      async function main() {
+        let res = await fetch("/test");
+        let body = await res.json();
+        console.log("element:", body);
+        document.querySelector(".out").innerHTML = body.text;
+        document.querySelector(".all").innerHTML = JSON.stringify(body);
+      }
+
+      main();
+    </script>
+  </body>
+</html>
