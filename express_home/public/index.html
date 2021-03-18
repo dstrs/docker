@@ -8,6 +8,12 @@
   </head>
   <body>
     <h1>HELLO WORLD</h1>
+    <form onsubmit="handleFormSubmit(event, this)">
+      <input type="text" name="author" placeholder="author" />
+      <input type="text" name="text" placeholder="text" />
+      <button>Send!</button>
+    </form>
+    <hr />
     <table>
       <thead style="min-width: 500px">
         <tr>
@@ -78,6 +84,12 @@
             text: "lorem text",
           }),
         });
+      }
+
+      async function handleFormSubmit(e, self) {
+        e.preventDefault();
+        let data = Object.fromEntries(new FormData(self));
+        console.log("data:", data);
       }
 
       async function main() {
