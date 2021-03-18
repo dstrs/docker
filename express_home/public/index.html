@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <h1>HELLO WORLD</h1>
+    <table>
+      <thead style="min-width: 500px">
+        <tr>
+          <th>id</th>
+          <th>author</th>
+          <th>text</th>
+          <th>actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td></td>
+        </tr>
+      </tbody>
+    </table>
+    <br />
+    <pre class="all"></pre>
+    <br />
+    <div class="messages"></div>
+    <script>
+      let items = [];
+
+      async function fetchAll() {
+        let res = await fetch("/messages");
+        let rows = await res.json();
+        let tableBodyElem = document.querySelector("table tbody");
+        tableBodyElem.innerHTML = "";
+
+        document.querySelector(".all").innerHTML = JSON.stringify(
+          rows,
+          null,
+          2
+        );
+
+        for (const iterator of rows) {
+          console.log("iterator:", iterator);
+          tableBodyElem.insertAdjacentHTML(
+            "beforeend",
+            `<tr data-id="${iterator.id}">
+              <td>${iterator.id}</td>
+              <td>${iterator.author}</td>
+              <td>${iterator.text}</td>
+              <td><button onclick="handleDelete(this)">del</button></td>
+            </tr>`
+          );
+        }
+
+        return rows;
+      }
+
+      async function handleDelete(e) {
+        let id = e.parentElement.parentElement.dataset["id"];
+        await fetch(`/messages/${id}`, {
+          method: "DELETE",
+        });
+        items = await fetchAll();
+      }
+
+      async function handleCreate(e) {
+        await fetch("/messages", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            author: "name " + Math.random(),
+            text: "lorem text",
+          }),
+        });
+      }
+
+      async function main() {
+        items = await fetchAll();
+        await handleCreate();
+      }
+
+      main();
+    </script>
+  </body>
+</html>
