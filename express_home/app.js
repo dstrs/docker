@@ -37,8 +37,11 @@ app.delete("/messages/:id", async (req, res) => {
 
 app.post("/messages", async (req, res) => {
   console.log(req.body);
-  // sql INSERT INTO
-  res.send(req.body);
+  const text = "INSERT INTO messages(author, text) VALUES($1, $2) RETURNING *";
+  const values = [req.body.author, req.body.text];
+  const dbResult = await client.query(text, values);
+
+  res.send(dbResult);
 });
 
 app.listen(port, async () => {
