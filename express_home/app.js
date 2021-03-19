@@ -22,7 +22,7 @@ app.get("/test", (req, res) => {
 });
 
 app.get("/messages", async (req, res) => {
-  const result = await client.query("SELECT * FROM messages");
+  const result = await client.query("SELECT * FROM messages order by id DESC");
   res.send(result.rows);
 });
 

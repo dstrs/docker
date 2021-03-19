@@ -72,17 +72,14 @@
         items = await fetchAll();
       }
 
-      async function handleCreate(e) {
+      async function handleCreate(body) {
         await fetch("/messages", {
           method: "POST",
           headers: {
             Accept: "application/json",
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            author: "name " + Math.random(),
-            text: "lorem text",
-          }),
+          body: JSON.stringify(body),
         });
       }
 
@@ -90,6 +87,9 @@
         e.preventDefault();
         let data = Object.fromEntries(new FormData(self));
         console.log("data:", data);
+
+        await handleCreate(data);
+        items = await fetchAll();
       }
 
       async function main() {
