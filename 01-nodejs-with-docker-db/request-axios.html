@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>axios</title>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+
+<body>
+  <h1>axios</h1>
+  <h3>
+    <a href="https://github.com/axios/axios" target="_blank">https://github.com/axios/axios</a>
+  </h3>
+  <button onclick="sendHttpReq('get')">GET</button>
+  <button onclick="sendHttpReq('post')">POST</button>
+  <button onclick="sendHttpReq('del')">DELETE</button>
+
+  <script>
+    async function sendHttpReq(type) {
+      if (type === "get") {
+        let response = await axios.get("/news");
+        console.log("data:", response.data);
+      }
+      if (type === "post") {
+        let rawResponse = await axios.post("/news", { a: 1, b: "Textual content" });
+        console.log("data:", rawResponse.data);
+      }
+      if (type === "del") {
+        let id = prompt("fill id");
+        let rawResponse = await axios.delete("/news/" + id);
+        console.log("data:", rawResponse.data);
+      }
+    }
+  </script>
+</body>
+
+</html>

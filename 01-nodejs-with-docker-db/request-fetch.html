@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>fetch</title>
+</head>
+
+<body>
+  <h1>fetch</h1>
+  <button onclick="sendHttpReq('get')">GET</button>
+  <button onclick="sendHttpReq('post')">POST</button>
+  <button onclick="sendHttpReq('del')">DELETE</button>
+
+  <script>
+    async function sendHttpReq(type) {
+      if (type === "get") {
+        let response = await fetch("/news");
+        let data = await response.json();
+        console.log("data:", data);
+      }
+      if (type === "post") {
+        let rawResponse = await fetch("/news", {
+          method: "POST",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ a: 1, b: "Textual content" }),
+        });
+        let data = await rawResponse.json();
+        console.log("data:", data);
+      }
+      if (type === "del") {
+        let id = prompt("fill id");
+        let rawResponse = await fetch("/news/" + id, {
+          method: "DELETE",
+        });
+        let data = await rawResponse.json();
+        console.log("data:", data);
+      }
+    }
+  </script>
+</body>
+
+</html>
