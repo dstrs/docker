@@ -4,7 +4,7 @@
 
 `cd sql` `npm install`
 
-`cd server` `npm install`
+<!-- `cd server` `npm install` -->
 
 
 # SQL
