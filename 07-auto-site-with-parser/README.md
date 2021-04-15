@@ -1,7 +1,9 @@
 # install
 
 `cd parser` `npm install`
+
 `cd sql` `npm install`
+
 `cd server` `npm install`
 
 
