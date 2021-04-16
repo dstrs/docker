@@ -5,9 +5,9 @@ async function main() {
 
   let res = await knex.schema.createTable("cars", function (table) {
     table.increments();
-    table.string("title").notNullable();
+    table.string("title", 500).notNullable();
     table.integer("price").notNullable();
-    table.integer("probeg");
+    table.jsonb("images").notNullable();
     table.integer("autoru_id").notNullable();
     table.timestamp("created_at").defaultTo(knex.fn.now());
   });

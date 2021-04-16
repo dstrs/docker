@@ -7,10 +7,15 @@ test("db hello", async ({ page, context }) => {
     {
       autoru_id: 333,
       title: "2222",
-      probeg: 10000000,
+      images: JSON.stringify([
+        "https://postgrespro.ru/img.png",
+        "https://qq.ru/img2.png",
+        "https://ww.ru/img5.png",
+      ]),
       price: 34000,
     },
   ]);
+
   console.log("insertRes:", insertRes);
 
   let items = await knex<CarItem>("cars").select("*");

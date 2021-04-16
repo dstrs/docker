@@ -8,6 +8,6 @@ export interface DBTimestamp {
 export interface CarItem extends DBId, DBTimestamp {
   title: string;
   price: number;
-  probeg?: number;
+  images: string[] | string;
   autoru_id: number;
 }
