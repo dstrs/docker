@@ -7,8 +7,7 @@ test("Страница авто", async ({ page, context }) => {
     page,
     context,
     props: {
-      url:
-        "https://auto.ru/cars/used/sale/vaz/21099/1103164726-a9b71395/?geo_id=971",
+      url: firstAutoUrl,
     },
   });
   console.log("VAZ.SPEC.TS: one res", JSON.stringify(oneAutoRes, null, 2));

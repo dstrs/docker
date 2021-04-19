@@ -25,6 +25,14 @@ export default async function parseOneAuto(
   await page.goto(url, {
     waitUntil: "domcontentloaded",
   });
+  let isSold = await page.evaluate(() => {
+    return document.querySelectorAll(".CardSold").length;
+  });
+  console.log("isSold:", isSold);
+
+  if (isSold === 1) {
+    throw new Error("Машина продана");
+  }
 
   let title = await page.innerText(".LayoutSidebar h1");
 
