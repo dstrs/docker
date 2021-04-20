@@ -15,12 +15,8 @@ function App() {
             <Link to="/car/add">add car</Link>
           </nav>
           <Switch>
-            <Route path="/car/add">
-              <CarAddForm />
-            </Route>
-            <Route path="/">
-              <Cars />
-            </Route>
+            <Route path="/car/add" component={CarAddForm} />
+            <Route path="/" component={Cars} />
           </Switch>
         </div>
       </Router>
